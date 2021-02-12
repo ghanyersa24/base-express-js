@@ -9,6 +9,9 @@ const { sequelize } = require("./models");
 const routerUsers = require("./controllers/users/router");
 const routerBooks = require("./controllers/books/router");
 const routerTransaction = require("./controllers/transactions/router");
+app.get("/", (req, res) =>
+  res.json({ success: true, message: "Welcome to my rest api order-book" })
+);
 app.use("/users", routerUsers);
 app.use("/books", routerBooks);
 app.use("/transactions", routerTransaction);
