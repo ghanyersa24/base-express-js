@@ -3,7 +3,7 @@
     "username": "u117343365_peopleshift",
     "password": "Rahasia123",
     "database": "u117343365_peopleshift",
-    "host": "127.0.0.1",
+    "host": "45.13.252.52",
     "dialect": "mysql"
   },
   "test": {
