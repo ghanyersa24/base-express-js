@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "sandbox",
+    "username": "u117343365_peopleshift",
+    "password": "Rahasia123",
+    "database": "u117343365_peopleshift",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
