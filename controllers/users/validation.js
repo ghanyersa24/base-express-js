@@ -27,6 +27,14 @@ exports.postValidator = [
       return Promise.reject("Nomor telepon sudah digunakan");
     }
   }),
+  body("email").custom(async (value) => {
+    const user = await users.findOne({
+      where: { email: value },
+    });
+    if (user) {
+      return Promise.reject("email sudah digunakan");
+    }
+  }),
 ];
 
 exports.putValidator = [
@@ -43,6 +51,14 @@ exports.putValidator = [
     });
     if (user) {
       return Promise.reject("Nomor telepon sudah digunakan orang lain");
+    }
+  }),
+  body("email").custom(async (value, { req }) => {
+    const user = await users.findOne({
+      where: { email: value, id: { [Sequelize.Op.ne]: req.body.id } },
+    });
+    if (user) {
+      return Promise.reject("Email sudah digunakan orang lain");
     }
   }),
 ];

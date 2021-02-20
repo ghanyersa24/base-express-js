@@ -26,8 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       name: { type: DataTypes.STRING },
+      email: { type: DataTypes.STRING(100) },
+      password: { type: DataTypes.STRING },
       address: { type: DataTypes.STRING },
-      phone: { type: DataTypes.STRING },
+      phone: { type: DataTypes.STRING(12) },
       gender: { type: DataTypes.STRING(10) },
     },
     {
@@ -35,5 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "users",
     }
   );
+  
   return users;
 };

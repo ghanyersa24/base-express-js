@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "u117343365_peopleshift",
-    "password": "Rahasia123",
-    "database": "u117343365_peopleshift",
-    "host": "45.13.252.52",
+    "username": "u1002933_myghan",
+    "password": "ghany24ae",
+    "database": "u1002933_academy",
+    "host": "45.130.231.216",
     "dialect": "mysql"
   },
   "test": {
-    "username": "u117343365_peopleshift",
-    "password": "Rahasia123",
-    "database": "u117343365_peopleshift",
-    "host": "45.13.252.52",
+    "username": "u1002933_myghan",
+    "password": "ghany24ae",
+    "database": "u1002933_academy",
+    "host": "45.130.231.216",
     "dialect": "mysql"
   },
   "production": {
-    "username": "u117343365_peopleshift",
-    "password": "Rahasia123",
-    "database": "u117343365_peopleshift",
-    "host": "45.13.252.52",
+    "username": "u1002933_myghan",
+    "password": "ghany24ae",
+    "database": "u1002933_academy",
+    "host": "45.130.231.216",
     "dialect": "mysql"
   }
 }
