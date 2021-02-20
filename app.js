@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(cors());
 
 const { sequelize } = require("./models");
-sequelize.sync({ force: true });
+// sequelize.sync({ force: true });
 const routerUsers = require("./controllers/users/router");
 const routerBooks = require("./controllers/books/router");
 const routerTransaction = require("./controllers/transactions/router");

@@ -20,12 +20,9 @@ exports.get = async (req, res) => {
 
 exports.create = async ({ body }, res) => {
   try {
-    const [typeBooks, created] = await type_books.findOrCreate({
-      where: { name: body.type },
-    });
     const payload = {
       name: body.name,
-      type_books_id: typeBooks.id,
+      type_books_id: body.type_books_id,
     };
     const data = await books.create(payload);
     return res.json(success({ message: "data berhasil ditambahkan", data }));
@@ -36,12 +33,9 @@ exports.create = async ({ body }, res) => {
 
 exports.update = async ({ body }, res) => {
   try {
-    const [typeBooks] = await type_books.findOrCreate({
-      where: { name: body.type },
-    });
     const payload = {
       name: body.name,
-      type_books_id: typeBooks.id,
+      type_books_id: body.type_books_id,
     };
     const where = {
       id: body.id,

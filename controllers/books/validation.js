@@ -1,5 +1,5 @@
 const { body, validationResult } = require("express-validator");
-const { books, Sequelize } = require("../../models");
+const { books, type_books, Sequelize } = require("../../models");
 const { failed } = require("../../config/response");
 
 exports.runValidator = (req, res, next) => {
@@ -9,15 +9,23 @@ exports.runValidator = (req, res, next) => {
   next();
 };
 
+exports.bookType = [
+  body("name").notEmpty().withMessage("Tipe buku tidak boleh kosong"),
+];
 exports.postValidator = [
   body("name", "nama buku tidak boleh kosong")
     .notEmpty()
     .custom(async (value) => {
       const book = await books.findOne({ where: { name: value } });
       if (book) {
-        console.log(book);
         return Promise.reject("Nama buku telah digunakan");
       }
+    }),
+  body("type_books_id", "type buku tidak boleh kosong")
+    .notEmpty()
+    .custom(async (value) => {
+      const type_books_id = await type_books.findOne({ where: { id: value } });
+      if (!type_books_id) return Promise.reject("Tipe buku tidak tersedia");
     }),
 ];
 
@@ -29,5 +37,11 @@ exports.putValidator = [
         where: { name: value, id: { [Sequelize.Op.ne]: req.body.id } },
       });
       if (book) return Promise.reject("Nama buku telah digunakan");
+    }),
+  body("type_books_id", "type buku tidak boleh kosong")
+    .notEmpty()
+    .custom(async (value) => {
+      const type_books_id = await type_books.findOne({ where: { id: value } });
+      if (!type_books_id) return Promise.reject("Tipe buku tidak tersedia");
     }),
 ];
