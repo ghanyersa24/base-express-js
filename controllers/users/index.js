@@ -1,9 +1,11 @@
 const { success, failed } = require("../../config/response");
-const { genSaltSync, hashSync, compareSync } = require("bcrypt");
-const { users } = require("../../models");
-exports.get = async (req, res) => {
+const { genSaltSync, hashSync } = require("bcrypt");
+const { users, Sequelize } = require("../../models");
+exports.get = async ({ auth }, res) => {
   try {
-    const data = await users.findAll();
+    const data = await users.findAll({
+      where: { id: { [Sequelize.Op.ne]: auth.user.id } },
+    });
     return res.json(success({ message: "data berhasil diterima", data: data }));
   } catch (error) {
     return res.json(failed({ message: "ERROR SYSTEM", data: error }));
