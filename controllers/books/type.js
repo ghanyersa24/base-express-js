@@ -28,3 +28,32 @@ exports.create = async ({ body }, res) => {
     return res.json(failed({ message: "ERROR", data: error }));
   }
 };
+
+exports.update = async ({ body }, res) => {
+  const payload = { name: body.name };
+  try {
+    const req = await type_books.update(payload, { where: { id: body.id } });
+    return res.json(success({ message: "berhasil mengubah tipe buku" }));
+  } catch (error) {
+    return res.json(failed({ message: "ERROR", data: error }));
+  }
+};
+
+exports.del = async ({ body }, res) => {
+  try {
+    const where = {
+      id: body.id,
+    };
+    const data = await type_books.destroy({ where });
+    if (data)
+      return res.json(
+        success({
+          message: "data berhasil dihapus",
+          data,
+        })
+      );
+    else throw "Buku tidak ditemukan";
+  } catch (error) {
+    return res.json(failed({ data: error }));
+  }
+};

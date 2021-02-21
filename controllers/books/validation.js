@@ -12,6 +12,12 @@ exports.runValidator = (req, res, next) => {
 exports.bookType = [
   body("name").notEmpty().withMessage("Tipe buku tidak boleh kosong"),
 ];
+
+exports.putBookType = [
+  body("id").notEmpty().withMessage("Id tipe tidak boleh kosong"),
+  body("name").notEmpty().withMessage("Tipe buku tidak boleh kosong"),
+];
+
 exports.postValidator = [
   body("name", "nama buku tidak boleh kosong")
     .notEmpty()
