@@ -2,9 +2,11 @@ const { success, failed } = require("../../config/response");
 const { genSaltSync, hashSync } = require("bcrypt");
 const { users, Sequelize } = require("../../models");
 exports.get = async ({ auth }, res) => {
+  const where = {};
+  if (auth) where.id = { [Sequelize.Op.ne]: auth.user.id };
   try {
     const data = await users.findAll({
-      where: { id: { [Sequelize.Op.ne]: auth.user.id } },
+      where,
     });
     return res.json(success({ message: "data berhasil diterima", data: data }));
   } catch (error) {
