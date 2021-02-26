@@ -7,7 +7,6 @@ exports.create = async (req, res) => {
     users_id: order.users_id,
     books_id: order.books_id,
     qty: order.qty,
-    
   }));
   try {
     const data = await orders.bulkCreate(payload);

@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "u1002933_myghan",
-    "password": "ghany24ae",
-    "database": "u1002933_academy",
-    "host": "45.130.231.216",
+    "username": "root",
+    "password": null,
+    "database": "sandbox",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

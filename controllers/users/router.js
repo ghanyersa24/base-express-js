@@ -10,6 +10,11 @@ router.post("/", checkToken, postValidator, runValidator, create);
 router.put("/", checkToken, putValidator, runValidator, update);
 router.delete("/", checkToken, del);
 
+router.get("/api", get);
+router.post("/api", postValidator, runValidator, create);
+router.put("/api", putValidator, runValidator, update);
+router.delete("/api", del);
+
 router.post("/login", loginValidation, runValidator, login);
 router.get("/profile", checkToken, profile);
 router.put("/profile", checkToken, updateProfile);

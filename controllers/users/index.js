@@ -56,6 +56,7 @@ exports.update = async ({ body }, res) => {
 
 exports.del = async ({ body }, res) => {
   try {
+    if (!body.id) return res.json(failed({ message: "id tidak ditemukan" }));
     const where = {
       id: body.id,
     };
