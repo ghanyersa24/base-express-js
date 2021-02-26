@@ -33,6 +33,7 @@ exports.postValidator = [
   body("email")
     .notEmpty()
     .withMessage("email tidak boleh kosong")
+    
     .custom(async (value) => {
       const user = await users.findOne({
         where: { email: value },
