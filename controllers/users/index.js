@@ -1,9 +1,10 @@
 const { success, failed } = require("../../config/response");
 const { genSaltSync, hashSync } = require("bcrypt");
 const { users, Sequelize } = require("../../models");
-exports.get = async ({ auth }, res) => {
+exports.get = async ({ auth, query }, res) => {
   const where = {};
   if (auth) where.id = { [Sequelize.Op.ne]: auth.user.id };
+  if (query.id) where.id = query.id;
   try {
     const data = await users.findAll({
       where,
