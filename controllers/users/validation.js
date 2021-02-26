@@ -19,22 +19,28 @@ const standard = [
 
 exports.postValidator = [
   ...standard,
-  body("phone").custom(async (value) => {
-    const user = await users.findOne({
-      where: { phone: value },
-    });
-    if (user) {
-      return Promise.reject("Nomor telepon sudah digunakan");
-    }
-  }),
-  body("email").custom(async (value) => {
-    const user = await users.findOne({
-      where: { email: value },
-    });
-    if (user) {
-      return Promise.reject("email sudah digunakan");
-    }
-  }),
+  body("phone")
+    .notEmpty()
+    .withMessage("phone tidak boleh kosong")
+    .custom(async (value) => {
+      const user = await users.findOne({
+        where: { phone: value },
+      });
+      if (user) {
+        return Promise.reject("Nomor telepon sudah digunakan");
+      }
+    }),
+  body("email")
+    .notEmpty()
+    .withMessage("phone tidak boleh kosong")
+    .custom(async (value) => {
+      const user = await users.findOne({
+        where: { email: value },
+      });
+      if (user) {
+        return Promise.reject("email sudah digunakan");
+      }
+    }),
 ];
 
 exports.putValidator = [
@@ -45,20 +51,26 @@ exports.putValidator = [
       if (!user) return Promise.reject("User tidak ditemukan");
     }),
   ...standard,
-  body("phone").custom(async (value, { req }) => {
-    const user = await users.findOne({
-      where: { phone: value, id: { [Sequelize.Op.ne]: req.body.id } },
-    });
-    if (user) {
-      return Promise.reject("Nomor telepon sudah digunakan orang lain");
-    }
-  }),
-  body("email").custom(async (value, { req }) => {
-    const user = await users.findOne({
-      where: { email: value, id: { [Sequelize.Op.ne]: req.body.id } },
-    });
-    if (user) {
-      return Promise.reject("Email sudah digunakan orang lain");
-    }
-  }),
+  body("phone")
+    .notEmpty()
+    .withMessage("phone tidak boleh kosong")
+    .custom(async (value, { req }) => {
+      const user = await users.findOne({
+        where: { phone: value, id: { [Sequelize.Op.ne]: req.body.id } },
+      });
+      if (user) {
+        return Promise.reject("Nomor telepon sudah digunakan orang lain");
+      }
+    }),
+  body("email")
+    .notEmpty()
+    .withMessage("phone tidak boleh kosong")
+    .custom(async (value, { req }) => {
+      const user = await users.findOne({
+        where: { email: value, id: { [Sequelize.Op.ne]: req.body.id } },
+      });
+      if (user) {
+        return Promise.reject("Email sudah digunakan orang lain");
+      }
+    }),
 ];
