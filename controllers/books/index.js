@@ -7,9 +7,12 @@ const {
   sequelize,
 } = require("../../models");
 
-exports.get = async (req, res) => {
+exports.get = async ({ query }, res) => {
+  const where = {};
+  if (query.id) where.id = query.id;
   try {
     const data = await books.findAll({
+      where,
       include: [type_books],
     });
     return res.json(success({ message: "data buku berhasil diterima", data }));
