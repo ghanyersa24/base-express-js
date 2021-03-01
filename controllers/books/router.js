@@ -15,14 +15,14 @@ const {
 const router = require("express").Router();
 const { checkToken } = require("../../middleware/jwt");
 
-router.get("/", checkToken, get);
-router.post("/", checkToken, postValidator, runValidator, create);
-router.put("/", checkToken, putValidator, runValidator, update);
-router.delete("/", checkToken, del);
+router.get("/", get);
+router.post("/", postValidator, runValidator, create);
+router.put("/", putValidator, runValidator, update);
+router.delete("/", del);
 
-router.get("/type", checkToken, getType);
-router.post("/type", checkToken, bookType, runValidator, createType);
-router.put("/type", checkToken, putBookType, runValidator, updateType);
-router.delete("/type", checkToken, deleteType);
+router.get("/type", getType);
+router.post("/type", bookType, runValidator, createType);
+router.put("/type", putBookType, runValidator, updateType);
+router.delete("/type", deleteType);
 
 module.exports = router;
