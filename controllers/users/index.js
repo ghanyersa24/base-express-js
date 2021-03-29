@@ -16,14 +16,14 @@ exports.get = async ({ auth, query }, res) => {
 };
 exports.create = async ({ body }, res) => {
   try {
-    const salt = genSaltSync(10);
-    body.password = hashSync(body.password, salt);
+    // const salt = genSaltSync(10);
+    // body.password = hashSync(body.password, salt);
     const payload = {
       name: body.name,
       email: body.email,
-      password: body.password,
+      // password: body.password,
       address: body.address,
-      gender: body.gender,
+      p: body.gender,
       phone: body.phone,
     };
 

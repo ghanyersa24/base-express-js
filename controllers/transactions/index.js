@@ -2,6 +2,8 @@ const { success, failed } = require("../../config/response");
 const { orders, users, books, type_books, sequelize } = require("../../models");
 
 exports.create = async (req, res) => {
+  if (!req.body.orders)
+    return res.json(failed({ message: "data order tidak boleh kosong" }));
   const order = req.body.orders;
   const payload = order.map((order) => ({
     users_id: order.users_id,
